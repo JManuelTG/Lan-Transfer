@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "lan-transfer"
+version = "1.0.0"
+description = "Herramienta ultrarrápida P2P para transferir archivos en LAN."
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = [
+    "tqdm>=4.66.0",
+    "requests>=2.31.0",
+    "rich>=13.0.0",
+    "cryptography>=42.0.0",
+]
+
+[project.scripts]
+lan-transfer = "lan:main"
+
+[tool.setuptools]
+py-modules = ["lan"]
