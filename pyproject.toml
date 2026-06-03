@@ -13,10 +13,11 @@ dependencies = [
     "requests>=2.31.0",
     "rich>=13.0.0",
     "cryptography>=42.0.0",
+    "zeroconf>=0.132.0",
 ]
 
 [project.scripts]
-lan-transfer = "lan:main"
+lan-transfer = "lan_transfer.cli:main"
 
 [tool.setuptools]
-py-modules = ["lan"]
+packages = ["lan_transfer"]

@@ -7,7 +7,7 @@ echo       COMPILANDO LAN TRANSFER A EJECUTABLE (.EXE)
 echo ========================================================
 echo.
 echo Ejecutando PyInstaller...
-venv\Scripts\pyinstaller --onefile --name lan-transfer lan.py
+venv\Scripts\pyinstaller --onefile --name lan-transfer lan_transfer/cli.py
 
 echo.
 echo ========================================================

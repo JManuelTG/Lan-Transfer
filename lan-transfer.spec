@@ -2,7 +2,7 @@
 
 
 a = Analysis(
-    ['lan.py'],
+    ['lan_transfer\\cli.py'],
     pathex=[],
     binaries=[],
     datas=[],
