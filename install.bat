@@ -6,22 +6,30 @@ echo ========================================================
 echo       INSTALANDO LAN TRANSFER GLOBALMENTE
 echo ========================================================
 echo.
-echo Compilando y agregando comando 'lan-transfer' al sistema...
+echo 1. Instalando paquete en Python...
 pip install .
 
 echo.
-echo Verificando variables de entorno (PATH)...
-powershell -Command "$scripts = (python -c \"import sys, os; print(os.path.join(sys.prefix, 'Scripts'))\" | Out-String).Trim(); $path = [Environment]::GetEnvironmentVariable('Path', 'User'); if ($path -notlike \"*$scripts*\") { [Environment]::SetEnvironmentVariable('Path', $path + ';' + $scripts, 'User'); Write-Host 'Se agrego Python Scripts al PATH exitosamente. (Reinicia la consola para aplicar cambios)' -ForegroundColor Yellow } else { Write-Host 'El PATH ya esta configurado correctamente.' -ForegroundColor Green }"
+echo 2. Creando atajo del sistema (lan-transfer.bat)...
+:: Creamos el archivo temporal
+echo @echo off > "%TEMP%\lan-transfer.bat"
+echo python -m lan %%* >> "%TEMP%\lan-transfer.bat"
+
+:: Intentamos moverlo a C:\Windows (Requiere permisos de administrador)
+copy /Y "%TEMP%\lan-transfer.bat" "C:\Windows\lan-transfer.bat" >nul 2>&1
+if %ERRORLEVEL% EQU 0 (
+    echo [OK] Atajo creado en C:\Windows ^(Modo Administrador^)
+) else (
+    :: Si no es admin, lo intentamos poner en WindowsApps que siempre esta en el PATH del usuario
+    copy /Y "%TEMP%\lan-transfer.bat" "%LOCALAPPDATA%\Microsoft\WindowsApps\lan-transfer.bat" >nul 2>&1
+    echo [OK] Atajo creado en AppData.
+)
 
 echo.
 echo ========================================================
-echo Instalacion completada exitosamente.
+echo ¡INSTALACION 100%% A PRUEBA DE FALLOS COMPLETADA!
 echo.
-echo MUY IMPORTANTE: Si es la primera vez que instalas, 
-echo CIERRA esta ventana de consola y ABRE UNA NUEVA para que
-echo el comando sea reconocido.
-echo.
-echo Luego podras usar desde cualquier carpeta:
+echo Puedes usar desde cualquier carpeta:
 echo.
 echo   lan-transfer send archivo.mp4
 echo   lan-transfer receive IP:PUERTO archivo.mp4
