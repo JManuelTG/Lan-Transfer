@@ -44,6 +44,26 @@ def send_file(filepath):
             # Avisamos al servidor que la descarga ha terminado
             self.server.file_downloaded = True
 
+        def copyfile(self, source, outputfile):
+            # Obtenemos el tamaño real para la barra de progreso
+            total_size = os.path.getsize(os.path.join(file_dir, filename))
+            with tqdm(
+                desc="Subiendo",
+                total=total_size,
+                unit='iB',
+                unit_scale=True,
+                unit_divisor=1024,
+                bar_format="{l_bar}{bar:40}{r_bar}",
+                colour="green"
+            ) as pbar:
+                # Copiamos en chunks de 1MB para reportar progreso
+                while True:
+                    chunk = source.read(1024 * 1024)
+                    if not chunk:
+                        break
+                    outputfile.write(chunk)
+                    pbar.update(len(chunk))
+
     server = TCPServer(("0.0.0.0", 0), FileHandler)
     server.file_downloaded = False
     # Timeout corto para que Python despierte y escuche el Ctrl+C

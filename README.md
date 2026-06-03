@@ -14,16 +14,19 @@ Olvídate de configurar puertos SSH, levantar servidores FTP o usar cables USB. 
 ## Instalación 🛠️
 
 1. Clona o descarga este repositorio.
-2. Crea un entorno virtual (opcional pero recomendado):
-   ```bash
-   python -m venv venv
-   # En Windows: venv\Scripts\activate
-   # En Linux/Mac: source venv/bin/activate
-   ```
-3. Instala las dependencias necesarias:
-   ```bash
-   pip install -r requirements.txt
-   ```
+2. Abre la terminal en la carpeta del proyecto.
+3. Dependiendo de tu sistema operativo, ejecuta el instalador:
+
+**Para Windows:**
+Dale doble clic al archivo `install.bat`.
+
+**Para Linux / macOS:**
+Dale permisos de ejecución al script y córrelo:
+```bash
+chmod +x install.sh
+./install.sh
+```
+*(Nota: En algunas distribuciones de Linux, es posible que necesites tener `~/.local/bin` agregado a tu PATH).*
 
 ## Modo de Uso 📖
 
