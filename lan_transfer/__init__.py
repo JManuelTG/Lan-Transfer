@@ -1,2 +1,3 @@
-# lan_transfer package
-__version__ = '1.1.0'
+"""LAN Transfer CLI package."""
+
+__version__ = "1.2.0"

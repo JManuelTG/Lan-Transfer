@@ -1,5 +1,5 @@
 @echo off
-title Compilador LAN Transfer (PyInstaller)
+title LAN Transfer Compiler (PyInstaller)
 color 0E
 
 echo ========================================================
@@ -7,16 +7,23 @@ echo       COMPILANDO LAN TRANSFER A EJECUTABLE (.EXE)
 echo ========================================================
 echo.
 echo Ejecutando PyInstaller...
-venv\Scripts\pyinstaller --onefile --name lan-transfer lan_transfer/cli.py
+venv\Scripts\pyinstaller --clean -y lan-transfer.spec
+
+if %ERRORLEVEL% NEQ 0 (
+    echo.
+    echo [X] Error durante la compilacion.
+    pause
+    exit /b %ERRORLEVEL%
+)
 
 echo.
 echo ========================================================
-echo ¡Compilacion Finalizada!
+echo [OK] Compilacion Finalizada!
 echo.
-echo Tu archivo listo para usar esta en la carpeta:
+echo Tu archivo portable listo para usar esta en:
 echo   dist\lan-transfer.exe
 echo.
-echo Puedes copiar ese archivo a cualquier PC y funcionara
-echo sin necesidad de instalar Python.
+echo Puedes copiar ese archivo a cualquier PC con Windows y
+echo funcionara sin necesidad de instalar Python.
 echo ========================================================
 pause

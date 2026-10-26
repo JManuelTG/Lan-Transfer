@@ -1,12 +1,14 @@
 # -*- mode: python ; coding: utf-8 -*-
+from PyInstaller.utils.hooks import collect_submodules
 
+hidden_imports = collect_submodules("zeroconf") + collect_submodules("lan_transfer")
 
 a = Analysis(
-    ['lan_transfer\\cli.py'],
-    pathex=[],
+    ["lan_transfer\\cli.py"],
+    pathex=["."],
     binaries=[],
     datas=[],
-    hiddenimports=[],
+    hiddenimports=hidden_imports,
     hookspath=[],
     hooksconfig={},
     runtime_hooks=[],
@@ -22,7 +24,7 @@ exe = EXE(
     a.binaries,
     a.datas,
     [],
-    name='lan-transfer',
+    name="lan-transfer",
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,

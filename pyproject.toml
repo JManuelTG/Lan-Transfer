@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "lan-transfer"
-version = "1.0.0"
-description = "Herramienta ultrarrápida P2P para transferir archivos en LAN."
+version = "1.2.0"
+description = "Ultra-fast encrypted P2P CLI tool for transferring files and folders across a LAN."
 readme = "README.md"
 requires-python = ">=3.8"
 dependencies = [
